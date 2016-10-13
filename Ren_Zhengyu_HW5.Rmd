@@ -1,0 +1,38 @@
+---
+title: "HW5"
+author: "Zhengyu Ren"
+date: "2016/10/6"
+output: html_document
+---
+```{r}
+library("ggplot2")
+data('diamonds')
+#1
+class(diamonds)#print the class of our data set by function'class'
+methods(class=class(diamonds)[3])#use function'method' to print all method associates	with dataframe,and use 'class(diamonds)[3]' to focus on the 'data.frame' class.
+attributes(diamonds)#use function 'attributes' to print attributes associates with dataframe.
+ncol(diamonds)#using 'ncol' to count the number	of columns in a	dataframe
+
+#2
+nrow(diamonds)#using 'nrow'to count the number of rows in a dataframe
+
+#3
+cat(colnames(diamonds),sep="\n")# use function 'cat' to print the name of the columns and 'sep="\n"' will print the column name one per line
+
+#4
+sapply(diamonds, class)#use function sapply to print	the	type	of	each	column	to	the	console
+
+#5 
+#Write	code	that	will	loop	through	any	dataframe	and	calculate	the	mean	of	every	numeric	column. Label	the	output	with	the	name	of	the	column
+lapply(diamonds[sapply(diamonds,is.numeric)],mean)#use function'sapply' to figure out the numeric colunmn and define it like a list by [],'lappy' is used to apply the function'mean' over the list.
+
+#6
+#Write	code	that	will	loop	through	any	dataframe	and	create	a	frequency	table	for	every	factor	column.	Label	the	output	with	the	name	of	the	column.
+summary(diamonds[sapply(diamonds,is.factor)])#use function'sapply' to figure out the factor colunmn and then use summary to get the frequency table
+
+#7
+#Write code that will loop through any dataframe and determine the	number of	rows containing	NA in	each column and the	percentage	of rows containing	an NA in any of	the	columns.
+apply(sapply(diamonds,is.na),2,sum)#using apply function extract the number of rows containing missing value(use'na' to recognize) in each column
+sum(rowSums(is.na(diamonds))>0)/nrow(diamonds)#using sum function to get the percentage of rows containing an missing value in all columns
+```
+
