@@ -1,0 +1,43 @@
+---
+title: "Ren_Zheng_HW5"
+author: "Zhengyu Ren"
+date: "2016/10/13"
+output: html_document
+---
+```{r}
+require(ggplot2)
+#1 	Create a histogram for every numeric column	in the diamonds	dataset
+ggplot(diamonds,aes(carat))+geom_histogram(bins = 60)+ggtitle("Carat Histogram")
+#apply ggplot to the numeric column 'carat' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(depth))+geom_histogram(bins = 60)+ggtitle("Depth Histogram")
+#apply ggplot to the numeric column 'depth' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(table))+geom_histogram(bins = 60)+ggtitle("Table Histogram")
+#apply ggplot to the numeric column 'table' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(price))+geom_histogram(bins = 60)+ggtitle("Price Histogram")
+#apply ggplot to the numeric column 'price' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(x))+geom_histogram(bins = 60)+ggtitle("x Histogram")
+#apply ggplot to the numeric column 'x' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(y))+geom_histogram(bins = 60)+ggtitle("y Histogram")
+#apply ggplot to the numeric column 'y' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+ggplot(diamonds,aes(z))+geom_histogram(bins = 60)+ggtitle("z Histogram")
+#apply ggplot to the numeric column 'z' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
+
+#2 Create a simple scatter plot of Weight and Price using Color as a facet.
+ggplot(diamonds, aes(x = carat, y = price, colour = factor(color))) + geom_point()+xlab("Weight")+labs(title="Diamonds - Weight to Price by Color")+theme(plot.title = element_text(colour = "blue"))
+#apply ggplot to the data set "diamonds". set x-axis be the data of carat and y-axis be the data of price by 'aes' function to create the list of unevaluated expression,and for scatter plot we use'geom_point'.finally add all details behind about the label,title and color by function 'lab' ond 'theme'.
+
+#3Remove the non-linearity and replot
+ggplot(diamonds, aes(x=log(carat), y=log(price), colour = factor(color)))+ geom_point()+xlab("Weight")+ylab("Price")+labs(title="Diamonds - Weight to Price (Linear)")+theme(plot.title = element_text(colour = "blue"))
+#apply ggplot to the data set "diamonds". set x-axis be the log of carat and y-axis be the log of price in order to remove the non-linearity.using'aes' function to create the list of unevaluated expression,and for scatter plot we use'geom_point'.finally add all details behind about the label,title and color by function 'lab' ond 'theme'.
+
+#4Remove the linear trend (create a linear model and use the transformed weight on the x-axis and the residuals on the y-axis)
+ggplot(diamonds, aes(x=log(carat), y=resid(lm(log(price)~log(carat), data = diamonds)), colour = factor(color)))+geom_point()+xlab("Weight")+ylab("Price Residuals")+labs(title="Diamonds - Weight to Price (Linear)")+theme(plot.title = element_text(colour = "blue"))+theme(legend.position="top")
+#apply ggplot to the data set "diamonds".still set x-axis be the log of carat. This time,use lm to fit the linear models based on the the log(price) to the log(carat),then apply function 'resid' to extracts model residuals. set the y-axis be the new variable.and for scatter plot we use'geom_point'.finally add all details behind about the label,title and color by function 'lab' ond 'theme'.
+```
+
