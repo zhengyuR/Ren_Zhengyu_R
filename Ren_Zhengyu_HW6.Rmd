@@ -28,6 +28,8 @@ ggplot(diamonds,aes(y))+geom_histogram(bins = 60)+ggtitle("y Histogram")
 ggplot(diamonds,aes(z))+geom_histogram(bins = 60)+ggtitle("z Histogram")
 #apply ggplot to the numeric column 'z' of data set "diamonds". using geom_histogram to create histogram and add details about the histogrm behind by '+'
 
+#Comments: This way works but I suggest one better clear idea. You can first filter out the numeric variables of the data sets and then design a loop to generate the graphs.
+
 #2 Create a simple scatter plot of Weight and Price using Color as a facet.
 ggplot(diamonds, aes(x = carat, y = price, colour = factor(color))) + geom_point()+xlab("Weight")+labs(title="Diamonds - Weight to Price by Color")+theme(plot.title = element_text(colour = "blue"))
 #apply ggplot to the data set "diamonds". set x-axis be the data of carat and y-axis be the data of price by 'aes' function to create the list of unevaluated expression,and for scatter plot we use'geom_point'.finally add all details behind about the label,title and color by function 'lab' ond 'theme'.
